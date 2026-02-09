@@ -1,4 +1,7 @@
-﻿namespace QuizMaker;
+﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
+
+namespace QuizMaker;
 
 class Program
 {

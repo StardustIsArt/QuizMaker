@@ -6,6 +6,7 @@ public class UIMethods
     {
         Console.WriteLine("Welcome to the Quiz Maker");
     }
+
     public static string GetFirstQuestion(string firstQuestion)
     {
         Console.WriteLine("Please add your question below:");
