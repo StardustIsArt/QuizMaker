@@ -1,6 +1,6 @@
 namespace QuizMaker;
 
-public class UIMethods
+public class Messages
 {
     public static void DisplayWelcomeMessage()
     {

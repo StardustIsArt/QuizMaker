@@ -7,8 +7,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        UIMethods.DisplayWelcomeMessage();
-        string getQuestion = UIMethods.GetFirstQuestion(firstQuestion: "");
+        Messages.DisplayWelcomeMessage();
+        string getQuestion = Messages.GetFirstQuestion(firstQuestion: "");
     }
     
 }
