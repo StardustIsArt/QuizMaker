@@ -5,9 +5,11 @@ namespace QuizMaker;
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
         Messages.DisplayWelcomeMessage();
+        Quiz userQuiz = new Quiz();
+       
         string getQuestion = Messages.GetFirstQuestion(firstQuestion: "");
     }
     
