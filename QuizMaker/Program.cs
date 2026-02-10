@@ -9,8 +9,9 @@ class Program
     {
         Messages.DisplayWelcomeMessage();
         Quiz userQuiz = new Quiz();
-       
-        string getQuestion = Messages.GetFirstQuestion(firstQuestion: "");
+        userQuiz.getQuestion = Messages.GetFirstQuestion(firstQuestion: "");
+        userQuiz.getCorrectAnswer = Messages.GetCorrectAnswer(correctAnswer: "");
+        userQuiz.getIncorrectAnswer1 = Messages.IncorrectAnswer(incorrectAnswer: "");
     }
     
 }

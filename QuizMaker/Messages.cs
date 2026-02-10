@@ -13,4 +13,18 @@ public class Messages
         Console.ReadLine();
         return firstQuestion;
     }
+
+    public static string GetCorrectAnswer(string correctAnswer)
+    {
+        Console.WriteLine("Please add your correct answer:");
+        Console.ReadLine();
+        return correctAnswer;
+    }
+
+    public static string IncorrectAnswer(string incorrectAnswer)
+    {
+        Console.WriteLine("Please add your incorrect answer:");
+        Console.ReadLine();
+        return incorrectAnswer;
+    }
 }
