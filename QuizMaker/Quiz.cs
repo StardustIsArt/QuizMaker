@@ -1,17 +1,19 @@
+using System.ComponentModel;
+using System.Collections.Generic;
+
 namespace QuizMaker;
 
 public class Quiz
 {
-    
-    public string getQuestion {  get; set; } 
-    public string getCorrectAnswer { get; set; }
-    public string getIncorrectAnswer1 { get; set; }
+    public string Question {  get; set; } 
+    public List<string> Answers { get; set; } = new();
+    public int CorrectAnswerIndex { get; set; }
 
-    public Quiz(string question, string correctAnswer, string incorrectAnswer)
+    public Quiz() {}
+    public Quiz(string question, List<string> answers, int correctAnswerIndex)
     {
-        getQuestion = question;
-        getCorrectAnswer = correctAnswer;
-        getIncorrectAnswer1 = incorrectAnswer;
+        Question = question;
+        Answers = answers;
+        CorrectAnswerIndex = correctAnswerIndex;
     }
-    
 }

@@ -9,9 +9,13 @@ class Program
     {
         Messages.DisplayWelcomeMessage();
         Quiz userQuiz = new Quiz();
-        userQuiz.getQuestion = Messages.GetFirstQuestion(firstQuestion: "");
-        userQuiz.getCorrectAnswer = Messages.GetCorrectAnswer(correctAnswer: "");
-        userQuiz.getIncorrectAnswer1 = Messages.IncorrectAnswer(incorrectAnswer: "");
+        userQuiz.Question = Messages.Question();
+        userQuiz.Answers = new List<string>();
+        userQuiz.CorrectAnswerIndex = 0;
+        
+        userQuiz.Answers.Add(Messages.GetCorrectAnswer());
+        userQuiz.Answers.Add(Messages.IncorrectAnswer());
+        userQuiz.Answers.Add(Messages.IncorrectAnswer());
     }
     
 }

@@ -7,24 +7,21 @@ public class Messages
         Console.WriteLine("Welcome to the Quiz Maker");
     }
 
-    public static string GetFirstQuestion(string firstQuestion)
+    public static string Question()
     {
         Console.WriteLine("Please add your question below:");
-        Console.ReadLine();
-        return firstQuestion;
+        return Console.ReadLine();
     }
 
-    public static string GetCorrectAnswer(string correctAnswer)
+    public static string GetCorrectAnswer()
     {
-        Console.WriteLine("Please add your correct answer:");
-        Console.ReadLine();
-        return correctAnswer;
+        Console.WriteLine("Please enter the correct answer:");
+        return Console.ReadLine();
     }
 
-    public static string IncorrectAnswer(string incorrectAnswer)
+    public static string IncorrectAnswer()
     {
-        Console.WriteLine("Please add your incorrect answer:");
-        Console.ReadLine();
-        return incorrectAnswer;
+        Console.WriteLine("Please add your incorrect answers:");
+        return Console.ReadLine();
     }
 }
