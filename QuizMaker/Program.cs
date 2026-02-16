@@ -8,7 +8,7 @@ class Program
     public static void Main(string[] args)
     {
         Messages.DisplayWelcomeMessage();
-        Quiz userQuiz = new Quiz()
+        QuizQuestion userQuiz = new QuizQuestion()
         {
             Question = Messages.Question(),
             Answers = new List<string>(),
@@ -21,9 +21,9 @@ class Program
         LoadQuiz();
     }
 
-    private static void SaveQuiz(Quiz quiz)
+    private static void SaveQuiz(QuizQuestion quiz)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
+        XmlSerializer serializer = new XmlSerializer(typeof(QuizQuestion));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         using (FileStream fs = File.Create(xmlFilePath))
         {
@@ -33,12 +33,12 @@ class Program
         
     }
 
-    private static Quiz LoadQuiz()
+    private static QuizQuestion LoadQuiz()
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
+        XmlSerializer serializer = new XmlSerializer(typeof(QuizQuestion));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         
         using FileStream fs = File.OpenRead(xmlFilePath);
-        return (Quiz)serializer.Deserialize(fs);
+        return (QuizQuestion)serializer.Deserialize(fs);
     }
 }

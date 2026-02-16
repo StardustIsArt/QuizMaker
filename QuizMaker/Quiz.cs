@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace QuizMaker;
 
-public class Quiz
+public class QuizQuestion
 {
     public string Question {  get; set; } 
     public List<string> Answers { get; set; } = new();
     public int CorrectAnswerIndex { get; set; }
 
-    public Quiz() {}
-    public Quiz(string question, List<string> answers, int correctAnswerIndex)
+    public QuizQuestion() {}
+    public QuizQuestion(string question, List<string> answers, int correctAnswerIndex)
     {
         Question = question;
         Answers = answers;
