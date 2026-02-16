@@ -24,4 +24,10 @@ public class Messages
         Console.WriteLine("Please add your incorrect answers:");
         return Console.ReadLine();
     }
+
+    public static string SavedXMLFile()
+    {
+        Console.WriteLine($"File saved to: {Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}");
+        return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+    }
 }
