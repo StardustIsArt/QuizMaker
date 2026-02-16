@@ -17,26 +17,28 @@ class Program
         userQuiz.Answers.Add(Messages.GetCorrectAnswer());
         userQuiz.Answers.Add(Messages.IncorrectAnswer());
         userQuiz.Answers.Add(Messages.IncorrectAnswer());
-        SaveQuiz();
-        LoadQuiz("quiz.xml");
+        SaveQuiz(userQuiz);
+        LoadQuiz();
     }
 
-    private static void SaveQuiz()
+    private static void SaveQuiz(Quiz quiz)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         using (FileStream fs = File.Create(xmlFilePath))
         {
-            serializer.Serialize(fs, new Quiz());
+            serializer.Serialize(fs, quiz);
         }
         Messages.SavedXMLFile();
         
     }
 
-    private static void LoadQuiz(string xmlFilePath)
+    private static Quiz LoadQuiz()
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
+        var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
+        
         using FileStream fs = File.OpenRead(xmlFilePath);
-        serializer.Deserialize(fs);
+        return (Quiz)serializer.Deserialize(fs);
     }
 }
