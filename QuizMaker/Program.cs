@@ -7,16 +7,16 @@ class Program
 {
     public static void Main(string[] args)
     {
-        Messages.DisplayWelcomeMessage();
+        UIMethods.DisplayWelcomeMessage();
         QuizQuestion userQuiz = new QuizQuestion()
         {
-            Question = Messages.Question(),
+            Question = UIMethods.Question(),
             Answers = new List<string>(),
             CorrectAnswerIndex = 0
         };
-        userQuiz.Answers.Add(Messages.GetCorrectAnswer());
-        userQuiz.Answers.Add(Messages.IncorrectAnswer());
-        userQuiz.Answers.Add(Messages.IncorrectAnswer());
+        userQuiz.Answers.Add(UIMethods.GetCorrectAnswer());
+        userQuiz.Answers.Add(UIMethods.IncorrectAnswer());
+        userQuiz.Answers.Add(UIMethods.IncorrectAnswer());
         SaveQuiz(userQuiz);
         LoadQuiz();
     }
@@ -29,7 +29,7 @@ class Program
         {
             serializer.Serialize(fs, quiz);
         }
-        Messages.SavedXMLFile();
+        UIMethods.SavedXMLFile();
         
     }
 
