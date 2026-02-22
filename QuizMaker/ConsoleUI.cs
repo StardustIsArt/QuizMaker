@@ -10,7 +10,7 @@ public class ConsoleUI
     public static int UserSelection()
     {
        Console.WriteLine("Please select an number option:"); 
-       Console.WriteLine($"{QuizOptions[0]} Create Quiz");
+       Console.WriteLine($"{Logic.Menu(quizOptions[0])} Create Quiz");
        Console.WriteLine($"{Constants.ChooseQuizToPlay} Choose Quiz to Play");
        Console.WriteLine($"{Constants.Exit} Exit");
        return Convert.ToInt32(Console.ReadLine());
