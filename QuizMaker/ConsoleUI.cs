@@ -7,13 +7,26 @@ public class ConsoleUI
         Console.WriteLine("Welcome to the Quiz Maker");
     }
 
-    public static int UserSelection()
+    public static void DisplayMenu()
     {
        Console.WriteLine("Please select an number option:"); 
-       Console.WriteLine($"{Logic.Menu(quizOptions[0])} Create Quiz");
-       Console.WriteLine($"{Constants.ChooseQuizToPlay} Choose Quiz to Play");
-       Console.WriteLine($"{Constants.Exit} Exit");
-       return Convert.ToInt32(Console.ReadLine());
+       Console.WriteLine("1. Create Quiz");
+       Console.WriteLine("2. Choose Quiz to Play");
+       Console.WriteLine("3. Exit");
+    }
+
+    public static int GetUserSelection()
+    {
+        Console.WriteLine("Please select an option:");
+        if (int.TryParse(Console.ReadLine(), out int userChoice))
+        {
+            return userChoice;
+        }
+        return 0;
+    }
+    public static void InvalidSelection()
+    {
+        Console.WriteLine("Invalid selection. Please try again.");
     }
 
     public static string Question()

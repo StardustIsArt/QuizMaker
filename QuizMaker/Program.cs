@@ -1,5 +1,7 @@
 ﻿
 
+using System.ComponentModel.Design;
+
 namespace QuizMaker;
 
 class Program
@@ -7,9 +9,16 @@ class Program
     public static void Main(string[] args)
     {
         ConsoleUI.DisplayWelcomeMessage();
-        ConsoleUI.UserSelection();
+        bool runningQuiz = true;
+        while (runningQuiz)
+        {
+            ConsoleUI.DisplayMenu();
+            int selection = ConsoleUI.GetUserSelection();
+            
+            
+        }
+       
         
-      
     }
     
 }
