@@ -20,7 +20,16 @@ public class Logic
         userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer());
         userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer());
         SaveQuiz(userQuiz);
+    }
+
+    public static void PlayQuiz()
+    {
         LoadQuiz();
+    }
+
+    public static void Exit()
+    {
+        Console.Clear();
     }
     private static void SaveQuiz(QuizQuestion quiz)
     {
@@ -39,6 +48,6 @@ public class Logic
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         
         using FileStream fs = File.OpenRead(xmlFilePath);
-        return (QuizQuestion)serializer.Deserialize(fs);
+        return (QuizQuestion)serializer.Deserialize(fs)!;
     }
 }
