@@ -4,10 +4,6 @@ using System.Xml.Serialization;
 namespace QuizMaker;
 public class Logic
 {
-    public static void Menu()
-    {
-        string[] quizOptions = [Constants.CreateQuiz, Constants.ChooseQuizToPlay, Constants.Exit];
-    }
     public static void QuizMaker()
     {
         QuizQuestion userQuiz = new QuizQuestion()
@@ -24,12 +20,17 @@ public class Logic
 
     public static void PlayQuiz()
     {
-        LoadQuiz();
+        QuizQuestion quiz = LoadQuiz();
+        ConsoleUI.DisplayQuestion(quiz);
+        int indexSelected = ConsoleUI.GetUserAnswer();
+        bool isCorrect = quiz.CorrectAnswerIndex == indexSelected;
+        ConsoleUI.ShowResult(isCorrect, quiz);
     }
 
     public static void Exit()
     {
         Console.Clear();
+        ConsoleUI.ExitMessage();
     }
     private static void SaveQuiz(QuizQuestion quiz)
     {

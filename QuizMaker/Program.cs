@@ -25,6 +25,7 @@ class Program
                     break;
                 case 3:
                     Logic.Exit();
+                    runningQuiz = false;
                     break;
                 default:
                     ConsoleUI.InvalidSelection();
