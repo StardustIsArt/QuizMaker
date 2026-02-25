@@ -13,8 +13,8 @@ public class Logic
             CorrectAnswerIndex = 0
         };
         userQuiz.Answers.Add(ConsoleUI.GetCorrectAnswer());
-        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer());
-        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer());
+        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer1());
+        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer2());
         SaveQuiz(userQuiz);
     }
 

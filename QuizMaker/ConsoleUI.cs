@@ -37,15 +37,20 @@ public class ConsoleUI
         Console.WriteLine("Please enter the correct answer:");
         return Console.ReadLine();
     }
-    public static string IncorrectAnswer()
+    public static string IncorrectAnswer1()
     {
-        Console.WriteLine("Please add your incorrect answers:");
+        Console.WriteLine("Please add your first incorrect answer:");
+        return Console.ReadLine();
+    }
+    public static string IncorrectAnswer2()
+    {
+        Console.WriteLine("Please add your second incorrect answer:");
         return Console.ReadLine();
     }
     public static void DisplayQuestion(QuizQuestion quiz)
     {
         Console.WriteLine($"{quiz.Question}");
-        for (int i = 0; i < quiz.Question.Length; i++)
+        for (int i = 0; i < quiz.Answers.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {quiz.Answers[i]}");
         }
