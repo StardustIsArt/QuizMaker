@@ -47,7 +47,7 @@ public class ConsoleUI
         Console.WriteLine($"{quiz.Question}");
         for (int i = 0; i < quiz.Question.Length; i++)
         {
-            Console.WriteLine($"{i + 1}. {quiz.Question[i]}");
+            Console.WriteLine($"{i + 1}. {quiz.Answers[i]}");
         }
     }
     public static int GetUserAnswer()
