@@ -18,13 +18,17 @@ class Program
             switch (selection)
             {
                 case Constants.CREATE_QUIZ:
-                    Logic.QuizMaker();
+                    string question = ConsoleUI.Question();
+                    string correct = ConsoleUI.GetCorrectAnswer();
+                    string wrong1 = ConsoleUI.IncorrectAnswer1();
+                    string wrong2 = ConsoleUI.IncorrectAnswer2();
+                    Logic.CreateQuiz(question, correct, wrong1, wrong2);
                     break;
                 case Constants.CHOOSE_QUIZ_TO_PLAY:
                     Logic.PlayQuiz();
                     break;
                 case Constants.EXIT:
-                    Logic.Exit();
+                    Logic.ExitApp();
                     runningQuiz = false;
                     break;
                 default:

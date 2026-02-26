@@ -4,14 +4,9 @@ using System.Xml.Serialization;
 namespace QuizMaker;
 public class Logic
 {
-    public static void QuizMaker()
+    public static void CreateQuiz(string question, string correct, string wrong1, string wrong2)
     {
-        var answers = new List<string>
-        {
-            ConsoleUI.GetCorrectAnswer(),
-            ConsoleUI.IncorrectAnswer1(),
-            ConsoleUI.IncorrectAnswer2()
-        };
+        var answers = new List<string> { correct, wrong1, wrong2 };
         var rng = new Random();
         string correctAnswer = answers[0];
         answers = answers.OrderBy(x => rng.Next()).ToList();
@@ -19,8 +14,8 @@ public class Logic
         
         CreateQuiz userQuiz = new CreateQuiz()
         {
-            Question = ConsoleUI.Question(),
-            Answers = new List<string>(),
+            Question = question,
+            Answers = answers,
             CorrectAnswerIndex = newCorrectIndex
         };
         Quiz quiz = new Quiz();
@@ -44,7 +39,7 @@ public class Logic
         ConsoleUI.ShowResult(score, quiz.Questions.Count);
         
     }
-    public static void Exit()
+    public static void ExitApp()
     {
         Console.Clear();
         ConsoleUI.ExitMessage();
