@@ -47,9 +47,9 @@ public class ConsoleUI
         Console.WriteLine("Please add your second incorrect answer:");
         return Console.ReadLine();
     }
-    public static void DisplayQuestion(CreateQuiz question)
+    public static void DisplayQuestion(Question question)
     {
-        Console.WriteLine($"{question.Question}");
+        Console.WriteLine($"{question.Questions}");
         for (int i = 0; i < question.Answers.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {question.Answers[i]}");

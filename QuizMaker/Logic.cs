@@ -12,9 +12,9 @@ public class Logic
         answers = answers.OrderBy(x => rng.Next()).ToList();
         int newCorrectIndex = answers.IndexOf(correctAnswer);
         
-        CreateQuiz userQuiz = new CreateQuiz()
+        Question userQuiz = new Question()
         {
-            Question = question,
+            Questions = question,
             Answers = answers,
             CorrectAnswerIndex = newCorrectIndex
         };
@@ -39,7 +39,7 @@ public class Logic
         ConsoleUI.ShowResult(score, quiz.Questions.Count);
         
     }
-    public static bool CheckAnswer(CreateQuiz question, int selectedIndex)
+    public static bool CheckAnswer(Question question, int selectedIndex)
     {
         return selectedIndex == question.CorrectAnswerIndex;
     }
@@ -54,7 +54,7 @@ public class Logic
         ConsoleUI.SavedXMLFile();
         
     }
-    private static Quiz? LoadQuiz()
+    public static Quiz? LoadQuiz()
     {
         if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml")))
         {

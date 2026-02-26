@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace QuizMaker;
 
-public class CreateQuiz
+public class Question
 {
-    public string Question { get; set; } = string.Empty;
+    public string Questions { get; set; } = string.Empty;
     public List<string> Answers { get; set; } = new();
     public int CorrectAnswerIndex { get; set; }
 
-    public CreateQuiz() {}
-    public CreateQuiz(string question, List<string> answers, int correctAnswerIndex)
+    public Question() {}
+    public Question(string question, List<string> answers, int correctAnswerIndex)
     {
-        Question = question;
+        Questions = question;
         Answers = answers;
         CorrectAnswerIndex = correctAnswerIndex;
     }
@@ -20,5 +20,5 @@ public class CreateQuiz
 
 public class Quiz
 {
-    public List<CreateQuiz> Questions { get; set; } = new();
+    public List<Question> Questions { get; set; } = new();
 }
