@@ -47,36 +47,36 @@ public class ConsoleUI
         Console.WriteLine("Please add your second incorrect answer:");
         return Console.ReadLine();
     }
-    public static void DisplayQuestion(QuizQuestion quiz)
+    public static void DisplayQuestion(CreateQuiz question)
     {
-        Console.WriteLine($"{quiz.Question}");
-        for (int i = 0; i < quiz.Answers.Count; i++)
+        Console.WriteLine($"{question.Question}");
+        for (int i = 0; i < question.Answers.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {quiz.Answers[i]}");
+            Console.WriteLine($"{i + 1}. {question.Answers[i]}");
         }
     }
     public static int GetUserAnswer()
     {
-        Console.WriteLine("Your answer is: (please enter numerical 1, 2 or 3)\n");
-        if (int.TryParse(Console.ReadLine(), out int userChoice))
+        while (true)
         {
-            return userChoice - 1;
+            Console.WriteLine("Your answer (1, 2 or 3):\n");
+            if (int.TryParse(Console.ReadLine(), out int userChoice)&& userChoice >= 1 && userChoice <= 3)
+            {
+                return userChoice - 1;
+            }
+            Console.WriteLine("Invalid input. Please enter 1, 2, or 3.");
         }
-        return -1;
     }
 
-    public static void ShowResult(bool isCorrect, QuizQuestion quiz)
+    public static void ShowResult(int score, int total)
     {
-        if (isCorrect)
-        {
-            Console.WriteLine("Hooray, that is correct!");
-        }
-        else
-        {
-            Console.WriteLine($"Wrongo. The correct answer is: {quiz.Answers[quiz.CorrectAnswerIndex]}");
-        }
+        Console.WriteLine($"You scored {score} out of {total} points");
     }
-    
+
+    public static void NoQuizFound()
+    {
+        Console.WriteLine("No Quiz found. Please creat one first.");
+    }
     public static void ExitMessage()
     {
         Console.WriteLine("Goodbye!");

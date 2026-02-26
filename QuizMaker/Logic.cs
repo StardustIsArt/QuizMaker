@@ -6,7 +6,7 @@ public class Logic
 {
     public static void QuizMaker()
     {
-        QuizQuestion userQuiz = new QuizQuestion()
+        CreateQuiz userQuiz = new CreateQuiz()
         {
             Question = ConsoleUI.Question(),
             Answers = new List<string>(),
@@ -20,11 +20,18 @@ public class Logic
 
     public static void PlayQuiz()
     {
-        QuizQuestion quiz = LoadQuiz();
-        ConsoleUI.DisplayQuestion(quiz);
-        int indexSelected = ConsoleUI.GetUserAnswer();
-        bool isCorrect = quiz.CorrectAnswerIndex == indexSelected;
-        ConsoleUI.ShowResult(isCorrect, quiz);
+        Quiz quiz = LoadQuiz();
+        int score = Constants.SCORE;
+        foreach (var question in quiz.Questions)
+        {
+            ConsoleUI.DisplayQuestion(question); 
+            int indexSelected = ConsoleUI.GetUserAnswer();
+            if (CheckAnswer(question, indexSelected))
+            {
+                score++;
+            }
+        }
+        ConsoleUI.ShowResult(score, quiz.Questions.Count);
     }
 
     public static void Exit()
@@ -32,9 +39,14 @@ public class Logic
         Console.Clear();
         ConsoleUI.ExitMessage();
     }
-    private static void SaveQuiz(QuizQuestion quiz)
+
+    public static bool CheckAnswer(Quiz question, int selectedIndex)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(QuizQuestion));
+        return selectedIndex == question.CorrectAnswerIndex;
+    }
+    private static void SaveQuiz(Quiz quiz)
+    {
+        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         using (FileStream fs = File.Create(xmlFilePath))
         {
@@ -43,12 +55,17 @@ public class Logic
         ConsoleUI.SavedXMLFile();
         
     }
-    private static QuizQuestion LoadQuiz()
+    private static Quiz LoadQuiz()
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(QuizQuestion));
+        if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml")))
+        {
+            ConsoleUI.NoQuizFound();
+            return null!;
+        }
+        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         
         using FileStream fs = File.OpenRead(xmlFilePath);
-        return (QuizQuestion)serializer.Deserialize(fs)!;
+        return (Quiz)serializer.Deserialize(fs)!;
     }
 }

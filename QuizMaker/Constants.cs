@@ -2,7 +2,8 @@ namespace QuizMaker;
 
 public class Constants
 {
-    public const string CreateQuiz = "1";
-    public const string ChooseQuizToPlay = "2";
-    public const string Exit = "3";
+    public const string CREATEQUIZ = "1";
+    public const string CHOOSEQUIZTOPLAY = "2";
+    public const string EXIT = "3";
+    public const int SCORE = 0;
 }
