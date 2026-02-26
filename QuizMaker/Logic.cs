@@ -6,18 +6,27 @@ public class Logic
 {
     public static void QuizMaker()
     {
+        var answers = new List<string>
+        {
+            ConsoleUI.GetCorrectAnswer(),
+            ConsoleUI.IncorrectAnswer1(),
+            ConsoleUI.IncorrectAnswer2()
+        };
+        var rng = new Random();
+        string correctAnswer = answers[0];
+        answers = answers.OrderBy(x => rng.Next()).ToList();
+        int newCorrectIndex = answers.IndexOf(correctAnswer);
+        
         CreateQuiz userQuiz = new CreateQuiz()
         {
             Question = ConsoleUI.Question(),
             Answers = new List<string>(),
-            CorrectAnswerIndex = 0
+            CorrectAnswerIndex = newCorrectIndex
         };
-        userQuiz.Answers.Add(ConsoleUI.GetCorrectAnswer());
-        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer1());
-        userQuiz.Answers.Add(ConsoleUI.IncorrectAnswer2());
-        SaveQuiz(userQuiz);
+        Quiz quiz = new Quiz();
+        quiz.Questions.Add(userQuiz);
+        SaveQuiz(quiz);
     }
-
     public static void PlayQuiz()
     {
         Quiz quiz = LoadQuiz();
@@ -33,14 +42,13 @@ public class Logic
         }
         ConsoleUI.ShowResult(score, quiz.Questions.Count);
     }
-
     public static void Exit()
     {
         Console.Clear();
         ConsoleUI.ExitMessage();
     }
 
-    public static bool CheckAnswer(Quiz question, int selectedIndex)
+    public static bool CheckAnswer(CreateQuiz question, int selectedIndex)
     {
         return selectedIndex == question.CorrectAnswerIndex;
     }

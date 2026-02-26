@@ -9,9 +9,9 @@ public class ConsoleUI
 
     public static void DisplayMenu()
     {
-       Console.WriteLine("1. Create Quiz");
-       Console.WriteLine("2. Choose Quiz to Play");
-       Console.WriteLine("3. Exit");
+       Console.WriteLine($"{Constants.CREATE_QUIZ}. Create Quiz");
+       Console.WriteLine($"{Constants.CHOOSE_QUIZ_TO_PLAY}. Choose Quiz to Play");
+       Console.WriteLine($"{Constants.EXIT}. Exit");
     }
 
     public static int GetUserSelection()
