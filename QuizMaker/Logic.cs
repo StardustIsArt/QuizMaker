@@ -39,12 +39,6 @@ public class Logic
         ConsoleUI.ShowResult(score, quiz.Questions.Count);
         
     }
-    public static void ExitApp()
-    {
-        Console.Clear();
-        ConsoleUI.ExitMessage();
-    }
-
     public static bool CheckAnswer(CreateQuiz question, int selectedIndex)
     {
         return selectedIndex == question.CorrectAnswerIndex;

@@ -11,7 +11,7 @@ public class ConsoleUI
     {
        Console.WriteLine($"{Constants.CREATE_QUIZ}. Create Quiz");
        Console.WriteLine($"{Constants.CHOOSE_QUIZ_TO_PLAY}. Choose Quiz to Play");
-       Console.WriteLine($"{Constants.EXIT}. Exit");
+       Console.WriteLine($"{Constants.EXIT_APP}. Exit");
     }
 
     public static int GetUserSelection()

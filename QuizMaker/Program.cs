@@ -27,8 +27,9 @@ class Program
                 case Constants.CHOOSE_QUIZ_TO_PLAY:
                     Logic.PlayQuiz();
                     break;
-                case Constants.EXIT:
-                    Logic.ExitApp();
+                case Constants.EXIT_APP:
+                    Console.Clear();
+                    ConsoleUI.ExitMessage();
                     runningQuiz = false;
                     break;
                 default:
