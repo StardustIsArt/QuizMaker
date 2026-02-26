@@ -4,46 +4,26 @@ using System.Xml.Serialization;
 namespace QuizMaker;
 public class Logic
 {
-    public static void CreateQuiz(string question, string correct, string wrong1, string wrong2)
+    public static void AddQuestion(Quiz quiz, string question, string correct, string wrong1, string wrong2)
     {
-        var answers = new List<string> { correct, wrong1, wrong2 };
+        var answers = new List<string>{ correct, wrong1, wrong2 };
         var rng = new Random();
-        string correctAnswer = answers[0];
-        answers = answers.OrderBy(x => rng.Next()).ToList();
-        int newCorrectIndex = answers.IndexOf(correctAnswer);
-        
-        Question userQuiz = new Question()
+        string correctAnswer = answers[Constants.CORRECT_ANSWER];
+        answers = answers.OrderBy( x => rng.Next()).ToList();
+        int newCorrectIndex = answers.IndexOf( correctAnswer );
+        Question newQuestion = new Question()
         {
-            Questions = question,
+            Text = question,
             Answers = answers,
-            CorrectAnswerIndex = newCorrectIndex
+            CorrectAnswerIndex = newCorrectIndex,
         };
-        Quiz quiz = new Quiz();
-        quiz.Questions.Add(userQuiz);
-        SaveQuiz(quiz);
-    }
-    public static void PlayQuiz()
-    {
-        Quiz? quiz = LoadQuiz();
-        if (quiz == null) return;
-        int score = Constants.SCORE;
-        foreach (var question in quiz.Questions)
-        {
-            ConsoleUI.DisplayQuestion(question); 
-            int indexSelected = ConsoleUI.GetUserAnswer();
-            if (CheckAnswer(question, indexSelected))
-            {
-                score++;
-            }
-        }
-        ConsoleUI.ShowResult(score, quiz.Questions.Count);
-        
+        quiz.Questions.Add(newQuestion);
     }
     public static bool CheckAnswer(Question question, int selectedIndex)
     {
         return selectedIndex == question.CorrectAnswerIndex;
     }
-    private static void SaveQuiz(Quiz quiz)
+    public static void SaveQuiz(Quiz quiz)
     {
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
