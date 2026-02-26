@@ -17,13 +17,13 @@ class Program
 
             switch (selection)
             {
-                case 1:
+                case Constants.CREATE_QUIZ:
                     Logic.QuizMaker();
                     break;
-                case 2:
+                case Constants.CHOOSE_QUIZ_TO_PLAY:
                     Logic.PlayQuiz();
                     break;
-                case 3:
+                case Constants.EXIT:
                     Logic.Exit();
                     runningQuiz = false;
                     break;
