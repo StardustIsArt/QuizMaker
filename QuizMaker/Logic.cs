@@ -29,7 +29,8 @@ public class Logic
     }
     public static void PlayQuiz()
     {
-        Quiz quiz = LoadQuiz();
+        Quiz? quiz = LoadQuiz();
+        if (quiz == null) return;
         int score = Constants.SCORE;
         foreach (var question in quiz.Questions)
         {
@@ -41,6 +42,7 @@ public class Logic
             }
         }
         ConsoleUI.ShowResult(score, quiz.Questions.Count);
+        
     }
     public static void Exit()
     {
@@ -63,17 +65,17 @@ public class Logic
         ConsoleUI.SavedXMLFile();
         
     }
-    private static Quiz LoadQuiz()
+    private static Quiz? LoadQuiz()
     {
         if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml")))
         {
             ConsoleUI.NoQuizFound();
-            return null!;
+            return null;
         }
         XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         
         using FileStream fs = File.OpenRead(xmlFilePath);
-        return (Quiz)serializer.Deserialize(fs)!;
+        return (Quiz?)serializer.Deserialize(fs)!;
     }
 }
