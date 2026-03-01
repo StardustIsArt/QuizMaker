@@ -1,6 +1,3 @@
-using System.ComponentModel;
-using System.Collections.Generic;
-
 namespace QuizMaker;
 
 public class Question

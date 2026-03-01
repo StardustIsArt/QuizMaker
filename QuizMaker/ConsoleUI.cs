@@ -35,15 +35,10 @@ public class ConsoleUI
         Console.WriteLine("Please enter the correct answer:");
         return Console.ReadLine();
     }
-    public static string IncorrectAnswer1()
+    public static string GetIncorrectAnswer(int number)
     {
-        Console.WriteLine("Please add your first incorrect answer:");
-        return Console.ReadLine();
-    }
-    public static string IncorrectAnswer2()
-    {
-        Console.WriteLine("Please add your second incorrect answer:");
-        return Console.ReadLine();
+        Console.WriteLine($"Enter the incorrect answer #{number}:");
+        return Console.ReadLine() ?? "";
     }
     public static void DisplayQuestion(Question question)
     {
@@ -53,9 +48,16 @@ public class ConsoleUI
             Console.WriteLine($"{i + 1}. {question.Answers[i]}");
         }
     }
-    public static bool AskAnotherQuestion()
+    public static bool AskAddAnotherQuestion()
     {
         Console.WriteLine("Would you like to add another question? (y/n)");
+        string response = Console.ReadLine()?.Trim().ToLower() ?? "n";
+        return response == "y" || response == "yes";
+    }
+
+    public static bool AskAddAnotherWrongAnswer()
+    {
+        Console.WriteLine("Would you like to add another wrong answer? (y/n)");
         return Console.ReadLine()?.Trim().ToLower() == "y";
     }
     public static int GetUserAnswer()

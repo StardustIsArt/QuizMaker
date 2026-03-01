@@ -18,20 +18,25 @@ class Program
             switch (selection)
             {
                 case Constants.CREATE_QUIZ:
-                    
                     Quiz newQuiz = new Quiz();
                     bool addingQuestions = true;
                     while (addingQuestions)
                     {
                         string question = ConsoleUI.Question();
                         string correct = ConsoleUI.GetCorrectAnswer();
-                        string wrong1 = ConsoleUI.IncorrectAnswer1();
-                        string wrong2 = ConsoleUI.IncorrectAnswer2();
-                        Logic.AddQuestion(newQuiz, question, correct, wrong1, wrong2);
-                        addingQuestions = ConsoleUI.AskAnotherQuestion();
+                        List<string> wrongAnswers = new List<string>();
+                        bool addingWrongAnswers = true;
+                        while (addingWrongAnswers)
+                        {
+                            string wrongAnswer = ConsoleUI.GetIncorrectAnswer(Constants.WRONG_ANSWER_COUNT);
+                            wrongAnswers.Add(wrongAnswer);
+                            Constants.WRONG_ANSWER_COUNT++;
+                            addingWrongAnswers = ConsoleUI.AskAddAnotherWrongAnswer();
+                        }
+                        Logic.AddQuestion(newQuiz, question, correct, wrongAnswers);
+                        addingQuestions = ConsoleUI.AskAddAnotherQuestion();
                     }
                     Logic.SaveQuiz(newQuiz);
-                    
                     break;
                 
                 case Constants.CHOOSE_QUIZ_TO_PLAY:

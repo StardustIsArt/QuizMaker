@@ -5,11 +5,11 @@ namespace QuizMaker;
 public class Logic
 {
     private static readonly XmlSerializer QuizSerializer = new XmlSerializer(typeof(Quiz));
-    public static void AddQuestion(Quiz quiz, string question, string correct, string wrong1, string wrong2)
+    public static void AddQuestion(Quiz quiz, string question, string correctAnswer, List<string> wrongAnswers)
     {
-        var answers = new List<string>{ correct, wrong1, wrong2 };
+        var answers = new List<string>{ correctAnswer };
+        answers.AddRange(wrongAnswers);
         var rng = new Random();
-        string correctAnswer = answers[Constants.CORRECT_ANSWER];
         answers = answers.OrderBy( x => rng.Next()).ToList();
         int newCorrectIndex = answers.IndexOf( correctAnswer );
         Question newQuestion = new Question()
