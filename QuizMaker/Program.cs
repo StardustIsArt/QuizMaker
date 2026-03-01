@@ -1,10 +1,8 @@
 ﻿
 
-using System.ComponentModel.Design;
-
 namespace QuizMaker;
 
-class Program
+static class Program
 {
     public static void Main(string[] args)
     {
@@ -28,7 +26,7 @@ class Program
                         bool addingWrongAnswers = true;
                         while (addingWrongAnswers)
                         {
-                            string wrongAnswer = ConsoleUI.GetIncorrectAnswer(Constants.WRONG_ANSWER_COUNT);
+                            string wrongAnswer = ConsoleUI.GetIncorrectAnswer();
                             wrongAnswers.Add(wrongAnswer);
                             Constants.WRONG_ANSWER_COUNT++;
                             addingWrongAnswers = ConsoleUI.AskAddAnotherWrongAnswer();
@@ -39,7 +37,7 @@ class Program
                     Logic.SaveQuiz(newQuiz);
                     break;
                 
-                case Constants.CHOOSE_QUIZ_TO_PLAY:
+                case Constants.CHOOSE_TO_PLAY:
                     Quiz? quiz = Logic.LoadQuiz();
                     if (quiz != null)
                     {
@@ -47,7 +45,7 @@ class Program
                         foreach (var questions in quiz.Questions)
                         {
                             ConsoleUI.DisplayQuestion(questions);
-                            int indexSelected = ConsoleUI.GetUserAnswer();
+                            int indexSelected = ConsoleUI.GetUserAnswer(questions.Answers.Count);
                             if (Logic.CheckAnswer(questions, indexSelected))
                             {
                                 score++;
@@ -55,7 +53,6 @@ class Program
                         }
                         ConsoleUI.ShowResult(score, quiz.Questions.Count);
                     }
-                        
                     break; 
                 
                 case Constants.EXIT_APP:

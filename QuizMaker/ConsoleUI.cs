@@ -9,7 +9,7 @@ public class ConsoleUI
     public static void DisplayMenu()
     {
        Console.WriteLine($"{Constants.CREATE_QUIZ}. Create Quiz");
-       Console.WriteLine($"{Constants.CHOOSE_QUIZ_TO_PLAY}. Choose Quiz to Play");
+       Console.WriteLine($"{Constants.CHOOSE_TO_PLAY}. Choose Quiz to Play");
        Console.WriteLine($"{Constants.EXIT_APP}. Exit");
     }
     public static int GetUserSelection()
@@ -35,9 +35,9 @@ public class ConsoleUI
         Console.WriteLine("Please enter the correct answer:");
         return Console.ReadLine();
     }
-    public static string GetIncorrectAnswer(int number)
+    public static string GetIncorrectAnswer()
     {
-        Console.WriteLine($"Enter the incorrect answer #{number}:");
+        Console.WriteLine($"Enter the incorrect answer:");
         return Console.ReadLine() ?? "";
     }
     public static void DisplayQuestion(Question question)
@@ -60,16 +60,16 @@ public class ConsoleUI
         Console.WriteLine("Would you like to add another wrong answer? (y/n)");
         return Console.ReadLine()?.Trim().ToLower() == "y";
     }
-    public static int GetUserAnswer()
+    public static int GetUserAnswer(int maxAnswers)
     {
         while (true)
         {
-            Console.WriteLine("Your answer (1, 2 or 3):\n");
-            if (int.TryParse(Console.ReadLine(), out int userChoice)&& userChoice >= 1 && userChoice <= 3)
+            Console.WriteLine($"Enter your answer #{maxAnswers}):\n");
+            if (int.TryParse(Console.ReadLine(), out int answer)&& answer >= 1 && answer <= maxAnswers)
             {
-                return userChoice - 1;
+                return answer - 1;
             }
-            Console.WriteLine("Invalid input. Please enter 1, 2, or 3.");
+            Console.WriteLine($"Invalid input. Please enter a number between 1 & {maxAnswers}:");
         }
     }
     public static void ShowResult(int score, int total)
@@ -88,5 +88,10 @@ public class ConsoleUI
     {
         Console.WriteLine($"File saved to: {Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}");
         return Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+    }
+
+    public static int GetUserAnswer()
+    {
+        throw new NotImplementedException();
     }
 }
