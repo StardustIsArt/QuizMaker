@@ -64,7 +64,7 @@ public class ConsoleUI
     {
         while (true)
         {
-            Console.WriteLine($"Enter your answer #{maxAnswers}):\n");
+            Console.WriteLine($"Enter your answer: (out of {maxAnswers})\n");
             if (int.TryParse(Console.ReadLine(), out int answer)&& answer >= 1 && answer <= maxAnswers)
             {
                 return answer - 1;
@@ -78,7 +78,7 @@ public class ConsoleUI
     }
     public static void NoQuizFound()
     {
-        Console.WriteLine("No Quiz found. Please creat one first.");
+        Console.WriteLine("No Quiz found. Please create one first.");
     }
     public static void ExitMessage()
     {
