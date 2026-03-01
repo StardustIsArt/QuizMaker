@@ -26,7 +26,7 @@ public class Logic
     }
     public static void SaveQuiz(Quiz quiz)
     {
-        var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
+        var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), Constants.NAME_OF_SAVED_QUIZ);
         using (FileStream fs = File.Create(xmlFilePath))
         {
             QuizSerializer.Serialize(fs, quiz);           
@@ -36,12 +36,12 @@ public class Logic
     }
     public static Quiz? LoadQuiz()
     {
-        if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml")))
+        if (!File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), Constants.NAME_OF_SAVED_QUIZ)))
         {
             ConsoleUI.NoQuizFound();
             return null;
         }
-        var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
+        var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), Constants.NAME_OF_SAVED_QUIZ);
         
         using FileStream fs = File.OpenRead(xmlFilePath);
         return (Quiz?)QuizSerializer.Deserialize(fs)!;

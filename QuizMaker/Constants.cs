@@ -7,4 +7,5 @@ public class Constants
     public const int EXIT_APP = 3;
     public const int SCORE = 0;
     public static int WRONG_ANSWER_COUNT = 1;
+    public static string NAME_OF_SAVED_QUIZ = "Quiz.xml";
 }
