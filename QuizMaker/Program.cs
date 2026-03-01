@@ -51,7 +51,7 @@ class Program
                         ConsoleUI.ShowResult(score, quiz.Questions.Count);
                     }
                         
-                    break;
+                    break; 
                 
                 case Constants.EXIT_APP:
                     Console.Clear();

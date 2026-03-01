@@ -4,6 +4,7 @@ using System.Xml.Serialization;
 namespace QuizMaker;
 public class Logic
 {
+    private static readonly XmlSerializer QuizSerializer = new XmlSerializer(typeof(Quiz));
     public static void AddQuestion(Quiz quiz, string question, string correct, string wrong1, string wrong2)
     {
         var answers = new List<string>{ correct, wrong1, wrong2 };
@@ -25,11 +26,10 @@ public class Logic
     }
     public static void SaveQuiz(Quiz quiz)
     {
-        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         using (FileStream fs = File.Create(xmlFilePath))
         {
-            serializer.Serialize(fs, quiz);
+            QuizSerializer.Serialize(fs, quiz);           
         }
         ConsoleUI.SavedXMLFile();
         
@@ -41,10 +41,9 @@ public class Logic
             ConsoleUI.NoQuizFound();
             return null;
         }
-        XmlSerializer serializer = new XmlSerializer(typeof(Quiz));
         var xmlFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Quiz.xml");
         
         using FileStream fs = File.OpenRead(xmlFilePath);
-        return (Quiz?)serializer.Deserialize(fs)!;
+        return (Quiz?)QuizSerializer.Deserialize(fs)!;
     }
 }
